@@ -1,5 +1,6 @@
-/** 
+** 
   test types of sorts that are polymorphic variations of Sorter
+    credit: Junhee Lee
  */
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -7,7 +8,36 @@ import java.util.ArrayList;
 public class UserOfSorts {
     public static void main(String[] commandLine) {
         // arrays to be sorted
-        ArrayList< String> unsorted = new ArrayList< String>(
+        ArrayList< String> unsorted = getUnsorted();
+
+        // insertion sort                   
+        oneTest( "insertion sort "
+               , new InsertionSorter( unsorted)
+               );
+
+        unsorted = getUnsorted();
+        
+        // selection sort
+        oneTest( "selection sort "
+               , new SelectionSorter( unsorted)
+               );
+    }
+
+
+    /** 
+     Run one test
+     */
+    private static void oneTest( String description
+                               , Sorter sorter
+                               ) {
+        System.out.println( System.lineSeparator() + description);
+        sorter.mySort();
+        System.out.println( sorter);
+        System.out.println( "sorted: " + sorter.isSorted());
+     }
+
+    private static ArrayList<String> getUnsorted() {
+      return new ArrayList< String>(
           /* Java's Arrays.asList provides a perspicuous
              way to build a Collection from literals,
              suitable for constructing an ArrayList */
@@ -36,23 +66,5 @@ public class UserOfSorts {
                */
             , "Z"  
             ));
-
-        // insertion sort                   
-        oneTest( "insertion sort "
-               , new InsertionSorter( unsorted)
-               );
     }
-
-
-    /** 
-     Run one test
-     */
-    private static void oneTest( String description
-                               , Sorter sorter
-                               ) {
-        System.out.println( System.lineSeparator() + description);
-        sorter.mySort();
-        System.out.println( sorter);
-        System.out.println( "sorted: " + sorter.isSorted());
-     }
 }

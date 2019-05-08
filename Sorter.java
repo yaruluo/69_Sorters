@@ -1,5 +1,6 @@
 /** 
   represent an abstraction of sorting an array  
+cred: Junhee Lee
   
  */
 import java.util.ArrayList;
@@ -45,5 +46,10 @@ abstract class Sorter {
            )
             if( elements.get(i).compareTo( elements.get(i+1)) > 0) return false;
         return true;
+    }
+
+    protected String debug(int run) {
+        return "current state of the array: " + toString()
+             + "    run: " + run;
     }
 }
